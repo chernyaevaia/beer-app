@@ -1,0 +1,39 @@
+.heading {
+  color: #271f1e;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+  background-color: #271f1e;
+  margin: 0 !important;
+}
+
+.card {
+  width: 290px;
+  display: flex;
+  row-gap: 18px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26px;
+  padding: 16px;
+  background-color: #f29226;
+}
+
+.beerImg {
+  height: 280px;
+  max-width: 300px;
+}
+
+.abv {
+  font-size: 30px;
+  font-weight: bold;
+}
