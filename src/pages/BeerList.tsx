@@ -7,17 +7,26 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import Pagination from "../components/Pagination";
 import { restApiService } from "../utils/RestApiService";
 import { BeerItem } from "../utils/types";
-import styles from "./Home.module.css";
+import styles from "./BeerList.module.css";
 
-const BeerList: React.FC = () => {
-  const [data, setData] = useState<BeerItem[]>();
+
+const BeerList = () => {
+  const [data, setData] = useState<BeerItem[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(5);
 
   useEffect(() => {
     restApiService.getBeers().then((res) => setData(res));
   }, []);
+  
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+  const nPages = Math.ceil(data.length / recordsPerPage);
 
   return (
     <IonPage>
@@ -28,8 +37,8 @@ const BeerList: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList className={styles.list} inset={true}>
-          {data &&
-            data.map((beerItem) => {
+          {currentRecords &&
+            currentRecords.map((beerItem) => {
               return (
                 <div className={styles.card} key={beerItem.id}>
                   <IonImg
@@ -42,6 +51,11 @@ const BeerList: React.FC = () => {
               );
             })}
         </IonList>
+        <Pagination
+              nPages={nPages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
       </IonContent>
     </IonPage>
   );
