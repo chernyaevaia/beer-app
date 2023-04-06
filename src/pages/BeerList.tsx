@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { restApiService } from "../utils/RestApiService";
 import { BeerItem } from "../utils/types";
-import styles from "./BeerList.module.css";
+import styles from "./Home.module.css";
 
 const BeerList: React.FC = () => {
   const [data, setData] = useState<BeerItem[]>();
