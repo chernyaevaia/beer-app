@@ -7,7 +7,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import BeerList from "./pages/BeerList";
+import BeerList from "./components/BeerList";
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
