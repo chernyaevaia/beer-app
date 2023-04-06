@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  column-gap: 20px;
+  padding: 0;
+}
+
+.pageNum {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+  color: #271f1e;
+  font-weight: bolder;
+}
+
+.pageNumActive {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+  color: red;
+  font-weight: bolder;
+}
