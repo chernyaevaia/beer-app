@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.beerImg {
+  height: 300px;
+  max-width: 300px;
+  margin: 20px 0;
+}
+
+.beerName,
+.tagline {
+  color: #271f1e;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin: 0;
+}
+
+.tagline {
+  margin-top: 20px;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 30px;
+  text-align: center;
+}
+
+.date {
+  color: #4e3d3c;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.description {
+  margin-right: 16px;
+  text-align: end;
+  color: #4e3d3c;
+  font-weight: bold;
+  font-style: italic;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 0.08em;
+}
