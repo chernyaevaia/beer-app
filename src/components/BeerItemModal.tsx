@@ -12,6 +12,7 @@ import {
 import { BeerItem } from "../utils/types";
 import { star } from "ionicons/icons";
 import styles from "./BeerItemModal.module.css";
+import { useState } from "react";
 
 export interface BeerItemModalProps {
   beerId: string;
@@ -27,6 +28,18 @@ export function BeerItemModal({
   onClose,
 }: BeerItemModalProps) {
   const selectedBeer = beers.find((beer) => beer.id === beerId);
+  const [favs, setFavs] = useState<BeerItem[]>([]);
+
+  const saveFav = (item: BeerItem[]) => {
+    localStorage.setItem("fav", JSON.stringify(item));
+  };
+
+  const handleAddFav = (beer: BeerItem) => {
+    if (favs.indexOf(beer) !== -1) return;
+    const newFavorite = [...favs, beer];
+    setFavs(newFavorite);
+    saveFav(newFavorite);
+  };
 
   return (
     <IonModal isOpen={isOpen}>
@@ -49,9 +62,15 @@ export function BeerItemModal({
           <p className={styles.date}>
             first brewed in {selectedBeer?.first_brewed}
           </p>
+          <p className={styles.date}>{selectedBeer?.abv}%</p>
           <p className={styles.tagline}>{selectedBeer?.tagline}</p>
           <p className={styles.description}>"{selectedBeer?.description}"</p>
-          <IonButton color="dark">
+          <IonButton
+            color="dark"
+            onClick={() => {
+              handleAddFav(selectedBeer!);
+            }}
+          >
             <IonIcon slot="start" icon={star}></IonIcon>
             Add to Favorites
           </IonButton>

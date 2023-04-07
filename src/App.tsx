@@ -1,13 +1,20 @@
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   IonApp,
+  IonButton,
   IonContent,
+  IonHeader,
+  IonIcon,
   IonPage,
-  IonRouterOutlet,
+  IonTitle,
+  IonToolbar,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import BeerList from "./components/BeerList";
+import { star } from "ionicons/icons";
+import styles from "./App.module.css";
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -30,6 +37,7 @@ import Pagination from "./components/Pagination";
 import { useState, useEffect } from "react";
 import { restApiService } from "./utils/RestApiService";
 import { BeerItem } from "./utils/types";
+import { FavoritesModal } from "./components/FavoritesModal";
 
 setupIonicReact();
 
@@ -37,37 +45,48 @@ const App = () => {
   const [data, setData] = useState<BeerItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(5);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     restApiService.getBeers().then((res) => setData(res));
   }, []);
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
   const nPages = Math.ceil(data.length / recordsPerPage);
 
-
   return (
     <IonApp>
       <IonReactRouter>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <IonPage>
-              <IonContent fullscreen>
-                <BeerList beers={currentRecords} />
-                <Pagination
-                  nPages={nPages}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                />
-              </IonContent>
-            </IonPage>
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
+        <Route exact path="/home">
+          <IonPage>
+            <IonContent className={styles.content} fullscreen>
+              <IonHeader>
+                <IonToolbar>
+                  <IonTitle className={styles.heading}>Beer Menu</IonTitle>
+                </IonToolbar>
+              </IonHeader>
+              <IonButton
+                className={styles.favBtn}
+                onClick={() => setIsOpen(true)}
+              >
+                <IonIcon slot="start" icon={star}></IonIcon>Favorites
+              </IonButton>
+              <BeerList beers={currentRecords} />
+              <Pagination
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+              <FavoritesModal isOpen={isOpen} onClose={() => handleClose()} />
+            </IonContent>
+          </IonPage>
+        </Route>
       </IonReactRouter>
     </IonApp>
   );

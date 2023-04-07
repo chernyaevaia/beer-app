@@ -24,6 +24,7 @@
   font-weight: bolder;
 }
 
-.pageNum:hover, .pageNumActive:hover {
+.pageNum:hover,
+.pageNumActive:hover {
   cursor: pointer;
 }

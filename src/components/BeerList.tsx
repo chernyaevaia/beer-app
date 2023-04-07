@@ -1,11 +1,4 @@
-import {
-  IonCard,
-  IonHeader,
-  IonImg,
-  IonList,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import { IonCard, IonImg, IonList } from "@ionic/react";
 import { useState } from "react";
 import { BeerItem } from "../utils/types";
 import { BeerItemModal } from "./BeerItemModal";
@@ -25,11 +18,6 @@ const BeerList = ({ beers }: BeerListProps) => {
 
   return (
     <>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle className={styles.heading}>Beer Menu</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonList className={styles.list} inset={true}>
         {beers &&
           beers.map((beerItem) => {

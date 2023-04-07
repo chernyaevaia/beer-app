@@ -3,7 +3,7 @@ import styles from "./Pagination.module.css";
 export interface PaginationProps {
   nPages: number;
   currentPage: number;
-  setCurrentPage: any;
+  setCurrentPage: (n: number) => void;
 }
 
 const Pagination = ({
