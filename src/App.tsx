@@ -63,7 +63,7 @@ const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <Route exact path="/">
+        <Route exact path="/beer-homepage">
           <IonPage>
             <IonContent className={styles.content} fullscreen>
               <IonHeader>

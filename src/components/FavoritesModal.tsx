@@ -51,7 +51,7 @@ export function FavoritesModal({ isOpen, onClose }: FavoritesModalProps) {
         {favorites.length ? (
           <IonList>
             {favorites.map((beer: BeerItem) => (
-              <IonItem>
+              <IonItem key={beer.id}>
                 {beer.name} ({beer.abv}%) — {beer.tagline}
                 <IonIcon
                   slot="end"
