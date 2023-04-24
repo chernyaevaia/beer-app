@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonButton,
@@ -63,6 +63,7 @@ const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
+        <Redirect exact from="/" to="/beer-homepage" />
         <Route exact path="/beer-homepage">
           <IonPage>
             <IonContent className={styles.content} fullscreen>
